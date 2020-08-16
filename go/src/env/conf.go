@@ -9,7 +9,9 @@ import (
 var Conf = &conf{}
 
 type conf struct {
-	Http    Http    `json:"http"`
+	Http        Http        `json:"http"`
+	EmailClient EmailClient `json:"email_client"`
+	Cache       Cache       `json:"cache"`
 }
 
 func (c *conf) Load(pathOfConfFile string) error {
@@ -22,5 +24,6 @@ func (c *conf) Load(pathOfConfFile string) error {
 		logs.Error(err)
 		return err
 	}
+	logs.Debug("%+v", c)
 	return nil
 }

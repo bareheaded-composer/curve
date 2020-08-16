@@ -7,20 +7,19 @@ import (
 	"net/smtp"
 )
 
-
 type EmailClient struct {
 	emailAddr string
 	authCode  string
-	stmpAddr  string
+	smtpAddr  string
 	port      int
 }
 
-func NewEmailClient(emailAddr string, authCode string, stmpAddr string, stmpPort int) *EmailClient {
+func NewEmailClient(emailAddr string, authCode string, smtpAddr string, smtpPort int) *EmailClient {
 	return &EmailClient{
 		emailAddr: emailAddr,
 		authCode:  authCode,
-		stmpAddr:  stmpAddr,
-		port:      stmpPort,
+		smtpAddr:  smtpAddr,
+		port:      smtpPort,
 	}
 }
 
@@ -39,7 +38,7 @@ func (e *EmailClient) SendEmail(emailAddrOfReceiver string, subject string, html
 }
 
 func (e *EmailClient) send(emailContext *model.EmailContext) error {
-	stmpPlainAuth := smtp.PlainAuth("", e.emailAddr, e.authCode, e.stmpAddr)
+	stmpPlainAuth := smtp.PlainAuth("", e.emailAddr, e.authCode, e.smtpAddr)
 	contentType, err := emailContext.GetSendingContentType()
 	if err != nil {
 		logs.Error(err)
@@ -53,7 +52,7 @@ func (e *EmailClient) send(emailContext *model.EmailContext) error {
 			emailContext.Body,
 		),
 	)
-	stmpHost := fmt.Sprintf("%s:%d", e.stmpAddr, e.port)
+	stmpHost := fmt.Sprintf("%s:%d", e.smtpAddr, e.port)
 	if err := smtp.SendMail(stmpHost, stmpPlainAuth, e.emailAddr, emailContext.EmailAddrOfReceivers, msg); err != nil {
 		logs.Error(err)
 	}

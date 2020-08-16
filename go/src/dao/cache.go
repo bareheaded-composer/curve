@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/garyburd/redigo/redis"
 )
@@ -10,8 +9,8 @@ type Cache struct {
 	conn redis.Conn
 }
 
-func NewCache(network, host string, port int) *Cache {
-	conn, err := redis.Dial(network, fmt.Sprintf("%s:%d", host, port))
+func NewCache(network, host string) *Cache {
+	conn, err := redis.Dial(network, host)
 	if err != nil {
 		logs.Error(err)
 		return nil
