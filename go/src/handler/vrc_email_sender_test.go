@@ -16,8 +16,8 @@ const (
 func TestVrcEmailSender(t *testing.T) {
 	const charPool = "0123456789"
 	const vrcLength = 6
-	const emailAddr = "417165709@qq.com"
-	const authCode = "zdvvnrxchbfgbhja"
+	const emailAddr = ""
+	const authCode = ""
 	const emailTemplateContent = `您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.`
 	vrcGenerator := NewVrcGenerator(charPool, vrcLength)
 	client := NewEmailClient(emailAddr, authCode, QQStmpAddr, QQStmpPort)

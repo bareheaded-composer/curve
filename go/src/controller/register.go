@@ -20,8 +20,8 @@ func init() {
 		WyStmpPort           = 25
 		charPool             = "0123456789"
 		vrcLength            = 6
-		emailAddr            = "417165709@qq.com"
-		authCode             = "zdvvnrxchbfgbhja"
+		emailAddr            = ""
+		authCode             = ""
 		emailTemplateContent = `您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.`
 	)
 
