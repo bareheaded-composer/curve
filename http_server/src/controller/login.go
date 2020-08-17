@@ -53,7 +53,6 @@ func Login(c *gin.Context) {
 		false,
 		true,
 	)
-	logs.Debug(c.Cookie(model.KeyForTokenInCookies))
 	upi, err := GlobalUserManager.GetUpi(uid)
 	if err != nil {
 		logs.Error(err)

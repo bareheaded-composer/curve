@@ -28,3 +28,8 @@ type LoginForm struct {
 type UpdateAvatarForm struct {
 	AvatarBase64Data string `json:"avatar_base64_data" binding:"required,base64,avatar"`
 }
+
+type SendLetterForm struct {
+	ReceiverUID int    `json:"receiver_uid" binding:"required"`
+	Content     string `json:"content" binding:"required"`
+}

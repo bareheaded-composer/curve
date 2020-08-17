@@ -138,6 +138,24 @@ func init() {
 }
 
 func init() {
+	db, err := gorm.Open(
+		"mysql",
+		fmt.Sprintf(
+			"%s:%s@(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+			env.Conf.Mysql.User,
+			env.Conf.Mysql.Password,
+			env.Conf.Mysql.Host,
+			env.Conf.Mysql.DBName,
+		),
+	)
+	if err != nil {
+		logs.Error(err)
+		return
+	}
+	controller.GlobalLetterManager = handler.NewLetterManager(db)
+}
+
+func init() {
 	const rootPath = "../assert"
 	controller.GlobalFileStorage = dao.NewFileStorage(rootPath)
 }
@@ -165,7 +183,10 @@ func main() {
 	r.POST("/askForChangePassword", controller.AskForChangePassword)
 	r.POST("/changePassword", controller.ChangePassword)
 	r.POST("/updateAvatar", controller.UpdateAvatar)
+	r.POST("/sendLetter", controller.SendLetter)
 	r.GET("/avatar/:name", controller.Avatar)
+	r.GET("/hadSentLetter",controller.HadSentLetter)
+	r.GET("/hadReceivedLetter/:senderUID",controller.HadReceivedLetter)
 	if err := r.Run(fmt.Sprintf(":%d", env.Conf.Http.Port)); err != nil {
 		logs.Error("Running go http server failed. :|")
 		return

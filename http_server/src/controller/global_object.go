@@ -10,3 +10,4 @@ var GlobalChangePasswordVrcManager *handler.VrcManager
 var GlobalTokenAnnouncer *handler.TokenAnnouncer
 var GlobalUserManager *handler.UserManager
 var GlobalFileStorage *dao.FileStorage
+var GlobalLetterManager *handler.LetterManager

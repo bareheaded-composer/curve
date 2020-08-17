@@ -29,13 +29,7 @@ func UpdateAvatar(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	secretTokenString, err := c.Cookie(model.KeyForTokenInCookies)
-	if err != nil {
-		logs.Error(err)
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-	uid, err := GlobalTokenAnnouncer.GetUidFromSecretTokenString(secretTokenString)
+	uid, err := getUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
