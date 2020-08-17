@@ -7,19 +7,19 @@ import (
 	"encoding/base64"
 )
 
-type coder struct {
+type Coder struct {
 	secretKey string
 	paddingSize int
 }
 
-func NewCoder(secretKey string) *coder{
-	return &coder{
+func NewCoder(secretKey string) *Coder{
+	return &Coder{
 		secretKey:secretKey,
 		paddingSize:16,
 	}
 }
 
-func (c *coder)Encrypt(originString string) (string, error) {
+func (c *Coder)Encrypt(originString string) (string, error) {
 	paddingBytes := c.getPaddingBytes([]byte(originString))
 	resultBytes := make([]byte, len(paddingBytes))
 	block, err := aes.NewCipher([]byte(c.secretKey))
@@ -31,7 +31,7 @@ func (c *coder)Encrypt(originString string) (string, error) {
 	return base64.StdEncoding.EncodeToString(resultBytes), nil // 对加密后的结果进行Base64编码
 }
 
-func (c *coder)Decrypt(encryptedString string) (string, error) {
+func (c *Coder)Decrypt(encryptedString string) (string, error) {
 	decodedBytes, err := base64.StdEncoding.DecodeString(encryptedString)
 	if err != nil {
 		return "", err
@@ -46,13 +46,13 @@ func (c *coder)Decrypt(encryptedString string) (string, error) {
 	return string(c.reducePaddingBytes(paddingBytes)), nil
 }
 
-func (c *coder)getPaddingBytes(originBytes []byte) []byte {
+func (c *Coder)getPaddingBytes(originBytes []byte) []byte {
 	lengthenLength := c.paddingSize - len(originBytes)%c.paddingSize
 	additionBytes := bytes.Repeat([]byte{byte(lengthenLength)}, lengthenLength)
 	return append(originBytes, additionBytes...)
 }
 
-func (c *coder)reducePaddingBytes(paddingBytes []byte) []byte {
+func (c *Coder)reducePaddingBytes(paddingBytes []byte) []byte {
 	if len(paddingBytes) == 0 {
 		return paddingBytes
 	}

@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"encoding/base64"
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"io/ioutil"
@@ -10,10 +11,23 @@ type FileStorage struct {
 	rootPath string
 }
 
-func NewFileStorage(rootPath string) *FileStorage{
+func NewFileStorage(rootPath string) *FileStorage {
 	return &FileStorage{
-		rootPath:rootPath,
+		rootPath: rootPath,
 	}
+}
+
+func (s *FileStorage) StoreBase64Data(storeName string, base64Data string) error {
+	fileData, err := base64.StdEncoding.DecodeString(base64Data)
+	if err != nil {
+		logs.Error(err)
+		return err
+	}
+	if err := s.Store(storeName, fileData); err != nil {
+		logs.Error(err)
+		return err
+	}
+	return nil
 }
 
 func (s *FileStorage) Store(storeName string, data []byte) error {

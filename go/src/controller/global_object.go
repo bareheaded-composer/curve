@@ -1,5 +1,12 @@
 package controller
 
-import "curve/src/handler"
+import (
+	"curve/src/dao"
+	"curve/src/handler"
+)
 
-var GlobalRegisterVrcManager *handler.RegisterVrcManager
+var GlobalRegisterVrcManager *handler.VrcManager
+var GlobalChangePasswordVrcManager *handler.VrcManager
+var GlobalTokenAnnouncer *handler.TokenAnnouncer
+var GlobalUserManager *handler.UserManager
+var GlobalFileStorage *dao.FileStorage

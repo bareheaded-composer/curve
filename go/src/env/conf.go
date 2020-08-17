@@ -9,6 +9,7 @@ import (
 var Conf = &conf{}
 
 type conf struct {
+	Mysql Mysql `json:"mysql"`
 	Http        Http        `json:"http"`
 	EmailClient EmailClient `json:"email_client"`
 	Cache       Cache       `json:"cache"`

@@ -7,14 +7,58 @@ import (
 	"net/http"
 )
 
-
-
 func Login(c *gin.Context) {
 	var loginForm model.LoginForm
-	if err := c.ShouldBindJSON(&loginForm);err!=nil{
+	if err := c.ShouldBindJSON(&loginForm); err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	logs.Info(loginForm)
+	isRight, err := GlobalUserManager.IsPasswordRight(loginForm.Email, loginForm.Password)
+	if err != nil {
+		logs.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	if !isRight {
+		c.JSON(http.StatusBadRequest, gin.H{"msg": "账号或密码出错。"})
+		return
+	}
+	if err := GlobalUserManager.UpdateLastLoginTime(loginForm.Email); err != nil {
+		logs.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	uid, err := GlobalUserManager.GetUid(loginForm.Email)
+	if err != nil {
+		logs.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	secretTokenString, err := GlobalTokenAnnouncer.GetSecretTokenString(uid)
+	if err != nil {
+		logs.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	const cookieExpiredSecond = 72 * 24 * 60 * 60
+	c.SetCookie(
+		model.KeyForTokenInCookies,
+		secretTokenString,
+		cookieExpiredSecond,
+		"/",
+		"localhost",
+		false,
+		true,
+	)
+	logs.Debug(c.Cookie(model.KeyForTokenInCookies))
+	upi, err := GlobalUserManager.GetUpi(uid)
+	if err != nil {
+		logs.Error(err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"msg": "登录成功.", "upi": upi})
 }

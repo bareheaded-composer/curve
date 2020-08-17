@@ -2,17 +2,18 @@ package handler
 
 import (
 	"bytes"
+	"curve/src/utils"
 	"github.com/astaxie/beego/logs"
 	"html/template"
 )
 
 type VrcEmailSender struct {
-	emailClient   *EmailClient
-	vrcGenerator  *VrcGenerator
+	emailClient   *utils.EmailClient
+	vrcGenerator  *utils.RandStringGenerator
 	emailTemplate *template.Template
 }
 
-func NewVrcEmailSender(client *EmailClient, generator *VrcGenerator, emailTemplate *template.Template) *VrcEmailSender {
+func NewVrcEmailSender(client *utils.EmailClient, generator *utils.RandStringGenerator, emailTemplate *template.Template) *VrcEmailSender {
 	return &VrcEmailSender{
 		emailClient:   client,
 		vrcGenerator:  generator,
@@ -22,7 +23,7 @@ func NewVrcEmailSender(client *EmailClient, generator *VrcGenerator, emailTempla
 
 func (v *VrcEmailSender) SendVrcEmail(subject string, emailAddrOfReceiver string, vrcExpiredSecond int) (string, error) {
 	var htmlContentBuffer bytes.Buffer
-	vrc := v.vrcGenerator.GetVrc()
+	vrc := v.vrcGenerator.Get()
 	if err := v.emailTemplate.Execute(&htmlContentBuffer, struct {
 		Vrc            string
 		VrcExpiredSecond int

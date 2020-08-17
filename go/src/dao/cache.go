@@ -40,6 +40,9 @@ func (c *Cache) Get(key string) ([]byte, error) {
 		logs.Error(err)
 		return nil, err
 	}
+	if reply == nil {
+		return nil, nil
+	}
 	return reply.([]byte), nil
 }
 
