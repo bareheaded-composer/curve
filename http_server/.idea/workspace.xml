@@ -20,27 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b50a927-36e4-427a-a3fa-7f94196476f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/message.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handler/message_manager.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handler/utils.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/protocol.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/global_object.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/global_object.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/letter.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/letter.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/register.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/utils.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/letter_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/letter_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/token_announcer.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/token_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/vrc_email_sender.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vrc_email_sender.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/vrc_email_sender_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vrc_email_sender_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/vrc_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/vrc_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/form.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/form.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/table.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +49,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -221,22 +204,22 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="760" y="448" key="#GOROOT/0.23.1920.977@0.23.1920.977" timestamp="1597625698407" />
-    <state width="1878" height="175" key="GridCell.Tab.0.bottom" timestamp="1597714736687">
+    <state width="1274" height="415" key="GridCell.Tab.0.bottom" timestamp="1597718320748">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="175" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597714736687" />
-    <state width="1878" height="175" key="GridCell.Tab.0.center" timestamp="1597714736686">
+    <state width="1274" height="415" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597718320748" />
+    <state width="1274" height="415" key="GridCell.Tab.0.center" timestamp="1597718320747">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="175" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597714736686" />
-    <state width="1878" height="175" key="GridCell.Tab.0.left" timestamp="1597714736685">
+    <state width="1274" height="415" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597718320747" />
+    <state width="1274" height="415" key="GridCell.Tab.0.left" timestamp="1597718320747">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="175" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597714736685" />
-    <state width="1878" height="175" key="GridCell.Tab.0.right" timestamp="1597714736686">
+    <state width="1274" height="415" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597718320747" />
+    <state width="1274" height="415" key="GridCell.Tab.0.right" timestamp="1597718320748">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="175" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597714736686" />
+    <state width="1274" height="415" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597718320748" />
     <state x="625" y="162" width="670" height="676" key="search.everywhere.popup" timestamp="1597712233964">
       <screen x="0" y="23" width="1920" height="977" />
     </state>

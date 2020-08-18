@@ -177,20 +177,29 @@ func main() {
 		}
 	}
 	r.GET("/test", controller.Test)
+
+	publicGroup := r.Group("/v1/public")
+	{
+		publicGroup.GET("/avatar/:name", controller.Avatar)
+	}
+
+	touristGroup := r.Group("/v1/tourist")
+	{
+		touristGroup.PATCH("/password", controller.ChangePassword)
+		touristGroup.POST("/ask_for_register", controller.AskForRegister)
+		touristGroup.POST("/ask_for_change_password", controller.AskForChangePassword)
+		touristGroup.POST("/login", controller.Login)
+		touristGroup.POST("/user", controller.Register)
+	}
+
 	userGroup := r.Group("/v1/user")
 	{
-		userGroup.POST("/login", controller.Login)
-		userGroup.POST("/register", controller.Register)
-		userGroup.POST("/askForRegister", controller.AskForRegister)
-		userGroup.POST("/askForChangePassword", controller.AskForChangePassword)
-		userGroup.POST("/changePassword", controller.ChangePassword)
-		userGroup.POST("/updateAvatar", controller.UpdateAvatar)
-		userGroup.POST("/sendLetter", controller.SendLetter)
-		userGroup.POST("/sendMessage", controller.SendMessage)
-		userGroup.GET("/registerClientOfReceivingMessage", controller.RegisterClientOfReceivingMessage)
-		userGroup.GET("/avatar/:name", controller.Avatar)
-		userGroup.GET("/hadSentLetter", controller.HadSentLetter)
-		userGroup.GET("/hadReceivedLetter/:senderUID", controller.HadReceivedLetter)
+		userGroup.PATCH("/avatar", controller.UpdateAvatar)
+		userGroup.POST("/letter", controller.SendLetter)
+		userGroup.POST("/message", controller.SendMessage)
+		userGroup.POST("/receiving_message_client", controller.RegisterClientOfReceivingMessage)
+		userGroup.GET("/had_sent_letter", controller.HadSentLetter)
+		userGroup.GET("/had_received_letter/:sender_uid", controller.HadReceivedLetter)
 	}
 
 	if err := r.Run(fmt.Sprintf(":%d", env.Conf.Http.Port)); err != nil {
