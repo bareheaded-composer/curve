@@ -60,13 +60,13 @@ func SendLetter(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	senderUID, err := GlobalTokenAnnouncer.GetUidFromSecretTokenString(secretTokenString)
+	senderUID, err := GlobalTokenManager.GetUidFromSecretTokenString(secretTokenString)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := GlobalLetterManager.SendLetter(
+	if err := GlobalLetterManager.StoreLetter(
 		senderUID,
 		sendLetterForm.ReceiverUID,
 		sendLetterForm.Content,

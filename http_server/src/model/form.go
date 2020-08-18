@@ -33,3 +33,8 @@ type SendLetterForm struct {
 	ReceiverUID int    `json:"receiver_uid" binding:"required"`
 	Content     string `json:"content" binding:"required"`
 }
+
+type SendMessageForm struct {
+	ReceiverUID int    `json:"receiver_uid" binding:"required"`
+	Content     string `json:"content" binding:"required"`
+}

@@ -1,8 +1,7 @@
-package handler
+package utils
 
 import (
 	"curve/src/env"
-	"curve/src/utils"
 	"github.com/astaxie/beego/logs"
 	"html/template"
 	"testing"
@@ -12,8 +11,8 @@ func TestVrcEmailSender(t *testing.T) {
 	const charPool = "0123456789"
 	const vrcLength = 6
 	const emailTemplateContent = `您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.`
-	vrcGenerator := utils.NewRandStringGenerator(charPool, vrcLength)
-	client := utils.NewEmailClient(
+	vrcGenerator := NewRandStringGenerator(charPool, vrcLength)
+	client := NewEmailClient(
 		env.Conf.EmailClient.EmailAddr,
 		env.Conf.EmailClient.AuthCode,
 		env.Conf.EmailClient.SmtpAddr,

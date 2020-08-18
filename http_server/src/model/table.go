@@ -6,9 +6,10 @@ import (
 )
 
 const (
-	tableNameOfUAI    = "user_account_information"
-	tableNameOfUPI    = "user_personal_information"
-	tableNameOfLetter = "letter"
+	tableNameOfUAI     = "user_account_information"
+	tableNameOfUPI     = "user_personal_information"
+	tableNameOfLetter  = "letter"
+	tableNameOfMessage = "message"
 )
 
 type UAI struct {
@@ -47,4 +48,15 @@ type Letter struct {
 
 func (*Letter) TableName() string {
 	return tableNameOfLetter
+}
+
+type Message struct {
+	gorm.Model
+	SenderUID   int
+	ReceiverUID int
+	Content     string
+}
+
+func (*Message) TableName() string {
+	return tableNameOfMessage
 }

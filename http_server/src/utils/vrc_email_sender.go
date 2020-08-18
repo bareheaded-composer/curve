@@ -1,19 +1,18 @@
-package handler
+package utils
 
 import (
 	"bytes"
-	"curve/src/utils"
 	"github.com/astaxie/beego/logs"
 	"html/template"
 )
 
 type VrcEmailSender struct {
-	emailClient   *utils.EmailClient
-	vrcGenerator  *utils.RandStringGenerator
+	emailClient   *EmailClient
+	vrcGenerator  *RandStringGenerator
 	emailTemplate *template.Template
 }
 
-func NewVrcEmailSender(client *utils.EmailClient, generator *utils.RandStringGenerator, emailTemplate *template.Template) *VrcEmailSender {
+func NewVrcEmailSender(client *EmailClient, generator *RandStringGenerator, emailTemplate *template.Template) *VrcEmailSender {
 	return &VrcEmailSender{
 		emailClient:   client,
 		vrcGenerator:  generator,

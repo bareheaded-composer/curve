@@ -12,7 +12,7 @@ func getUid(c *gin.Context) (int, error) {
 		logs.Error(err)
 		return model.FlagOfInvalidUID, err
 	}
-	uid, err := GlobalTokenAnnouncer.GetUidFromSecretTokenString(secretTokenString)
+	uid, err := GlobalTokenManager.GetUidFromSecretTokenString(secretTokenString)
 	if err != nil {
 		logs.Error(err)
 		return model.FlagOfInvalidUID, err

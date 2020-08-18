@@ -9,15 +9,15 @@ import (
 	"time"
 )
 
-type TokenAnnouncer struct {
+type TokenManager struct {
 	coder         *utils.Coder
 	tokenDuration time.Duration
 	secretKey     string
 	keyForUID     string
 }
 
-func NewTokenAnnouncer(coder *utils.Coder, tokenDuration time.Duration, secretKey string, keyForUID string) *TokenAnnouncer {
-	return &TokenAnnouncer{
+func NewTokenManager(coder *utils.Coder, tokenDuration time.Duration, secretKey string, keyForUID string) *TokenManager {
+	return &TokenManager{
 		coder:         coder,
 		tokenDuration: tokenDuration,
 		secretKey:     secretKey,
@@ -25,7 +25,7 @@ func NewTokenAnnouncer(coder *utils.Coder, tokenDuration time.Duration, secretKe
 	}
 }
 
-func (t *TokenAnnouncer) GetSecretTokenString(uid int) (string, error) {
+func (t *TokenManager) GetSecretTokenString(uid int) (string, error) {
 	tokenString, err := t.getTokenString(uid)
 	if err != nil {
 		logs.Error(err)
@@ -39,7 +39,7 @@ func (t *TokenAnnouncer) GetSecretTokenString(uid int) (string, error) {
 	return secretTokenString, nil
 }
 
-func (t *TokenAnnouncer) GetUidFromSecretTokenString(secretTokenString string) (int, error) {
+func (t *TokenManager) GetUidFromSecretTokenString(secretTokenString string) (int, error) {
 	tokenString, err := t.coder.Decrypt(secretTokenString)
 	if err != nil {
 		logs.Error(err)
@@ -53,7 +53,7 @@ func (t *TokenAnnouncer) GetUidFromSecretTokenString(secretTokenString string) (
 	return uid, nil
 }
 
-func (t *TokenAnnouncer) getTokenString(uid int) (string, error) {
+func (t *TokenManager) getTokenString(uid int) (string, error) {
 	userClaims := &model.UserClaims{
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(t.tokenDuration).Unix(),
@@ -69,7 +69,7 @@ func (t *TokenAnnouncer) getTokenString(uid int) (string, error) {
 	return tokenString, nil
 }
 
-func (t *TokenAnnouncer) getUid(tokenString string) (int, error) {
+func (t *TokenManager) getUid(tokenString string) (int, error) {
 	token, err := jwt.Parse(tokenString, func(*jwt.Token) (interface{}, error) {
 		return []byte(t.secretKey), nil
 	})

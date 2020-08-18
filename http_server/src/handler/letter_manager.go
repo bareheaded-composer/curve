@@ -34,7 +34,7 @@ func (m *LetterManager) GetHadReceivedLetters(senderUID, receiverUID int) ([]mod
 	return letters, nil
 }
 
-func (m *LetterManager) SendLetter(senderUID, receiverUID int, content string) error {
+func (m *LetterManager) StoreLetter(senderUID, receiverUID int, content string) error {
 	letter := &model.Letter{
 		SenderUID:   senderUID,
 		ReceiverUID: receiverUID,

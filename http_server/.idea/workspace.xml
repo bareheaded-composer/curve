@@ -20,52 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b50a927-36e4-427a-a3fa-7f94196476f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/letter.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/utils.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handler/letter_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/curve.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../go/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/avatar.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/change_password.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/global_object.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/login.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/register.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/controller/test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/dao/cache.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/dao/file_storage.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/dao/file_storage_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/env/cache.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/env/conf.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/env/email_client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/env/http.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/env/mysql.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/handler/token_announcer.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/handler/user_manager.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/handler/vrc_email_sender.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/handler/vrc_email_sender_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/handler/vrc_manager.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/avatar.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/email_context.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/form.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/hash.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/table.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/token.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/model/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/coder.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/coder_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/const.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/email_client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/hasher.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/rand_string_generator.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/rand_string_generator_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../go/src/utils/utils.go" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handler/message_manager.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/handler/utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/protocol.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../go/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/global_object.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/global_object.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/letter.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/letter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/letter_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/letter_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/token_announcer.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/token_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/vrc_email_sender.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vrc_email_sender.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/vrc_email_sender_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/vrc_email_sender_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handler/vrc_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/vrc_manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/form.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/form.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/table.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,16 +83,16 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="C:\Users\hasee\Desktop\curve\src" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/conf" />
       <recent name="C:\Users\hasee\Desktop\curve\go\src\handler" />
       <recent name="C:\Users\hasee\Desktop\curve\go\src\dao" />
       <recent name="C:\Users\hasee\Desktop\curve\src\utils" />
       <recent name="C:\Users\hasee\Desktop\curve\conf" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="C:\Users\hasee\Desktop\curve\src" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
@@ -246,25 +221,25 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="760" y="448" key="#GOROOT/0.23.1920.977@0.23.1920.977" timestamp="1597625698407" />
-    <state width="1878" height="320" key="GridCell.Tab.0.bottom" timestamp="1597662387909">
+    <state width="1878" height="175" key="GridCell.Tab.0.bottom" timestamp="1597714736687">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="320" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597662387909" />
-    <state width="1878" height="320" key="GridCell.Tab.0.center" timestamp="1597662387908">
+    <state width="1878" height="175" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597714736687" />
+    <state width="1878" height="175" key="GridCell.Tab.0.center" timestamp="1597714736686">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="320" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597662387908" />
-    <state width="1878" height="320" key="GridCell.Tab.0.left" timestamp="1597662387907">
+    <state width="1878" height="175" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597714736686" />
+    <state width="1878" height="175" key="GridCell.Tab.0.left" timestamp="1597714736685">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="320" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597662387907" />
-    <state width="1878" height="320" key="GridCell.Tab.0.right" timestamp="1597662387908">
+    <state width="1878" height="175" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597714736685" />
+    <state width="1878" height="175" key="GridCell.Tab.0.right" timestamp="1597714736686">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="320" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597662387908" />
-    <state x="625" y="162" width="670" height="676" key="search.everywhere.popup" timestamp="1597631157794">
+    <state width="1878" height="175" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597714736686" />
+    <state x="625" y="162" width="670" height="676" key="search.everywhere.popup" timestamp="1597712233964">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state x="625" y="162" width="670" height="676" key="search.everywhere.popup/0.23.1920.977@0.23.1920.977" timestamp="1597631157794" />
+    <state x="625" y="162" width="670" height="676" key="search.everywhere.popup/0.23.1920.977@0.23.1920.977" timestamp="1597712233964" />
   </component>
 </project>

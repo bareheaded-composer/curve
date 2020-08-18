@@ -57,7 +57,7 @@ func init() {
 		logs.Error(err)
 		return
 	}
-	vrcEmailSender := handler.NewVrcEmailSender(client, vrcGenerator, emailTemplate)
+	vrcEmailSender := utils.NewVrcEmailSender(client, vrcGenerator, emailTemplate)
 	cache := dao.NewCache(
 		env.Conf.Cache.Network,
 		env.Conf.Cache.Host,
@@ -90,7 +90,7 @@ func init() {
 		logs.Error(err)
 		return
 	}
-	vrcEmailSender := handler.NewVrcEmailSender(client, vrcGenerator, emailTemplate)
+	vrcEmailSender := utils.NewVrcEmailSender(client, vrcGenerator, emailTemplate)
 	cache := dao.NewCache(
 		env.Conf.Cache.Network,
 		env.Conf.Cache.Host,
@@ -109,7 +109,7 @@ func init() {
 	const tokenSecretKey = "abcdefghi"
 	coder := utils.NewCoder(coderSecretKey)
 	tokenDuration := 72 * time.Hour
-	controller.GlobalTokenAnnouncer = handler.NewTokenAnnouncer(coder, tokenDuration, tokenSecretKey, model.KeyForUid)
+	controller.GlobalTokenManager = handler.NewTokenManager(coder, tokenDuration, tokenSecretKey, model.KeyForUid)
 }
 
 func init() {
@@ -177,16 +177,22 @@ func main() {
 		}
 	}
 	r.GET("/test", controller.Test)
-	r.POST("/login", controller.Login)
-	r.POST("/register", controller.Register)
-	r.POST("/askForRegister", controller.AskForRegister)
-	r.POST("/askForChangePassword", controller.AskForChangePassword)
-	r.POST("/changePassword", controller.ChangePassword)
-	r.POST("/updateAvatar", controller.UpdateAvatar)
-	r.POST("/sendLetter", controller.SendLetter)
-	r.GET("/avatar/:name", controller.Avatar)
-	r.GET("/hadSentLetter",controller.HadSentLetter)
-	r.GET("/hadReceivedLetter/:senderUID",controller.HadReceivedLetter)
+	userGroup := r.Group("/v1/user")
+	{
+		userGroup.POST("/login", controller.Login)
+		userGroup.POST("/register", controller.Register)
+		userGroup.POST("/askForRegister", controller.AskForRegister)
+		userGroup.POST("/askForChangePassword", controller.AskForChangePassword)
+		userGroup.POST("/changePassword", controller.ChangePassword)
+		userGroup.POST("/updateAvatar", controller.UpdateAvatar)
+		userGroup.POST("/sendLetter", controller.SendLetter)
+		userGroup.POST("/sendMessage", controller.SendMessage)
+		userGroup.GET("/registerClientOfReceivingMessage", controller.RegisterClientOfReceivingMessage)
+		userGroup.GET("/avatar/:name", controller.Avatar)
+		userGroup.GET("/hadSentLetter", controller.HadSentLetter)
+		userGroup.GET("/hadReceivedLetter/:senderUID", controller.HadReceivedLetter)
+	}
+
 	if err := r.Run(fmt.Sprintf(":%d", env.Conf.Http.Port)); err != nil {
 		logs.Error("Running go http server failed. :|")
 		return

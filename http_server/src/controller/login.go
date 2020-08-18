@@ -37,7 +37,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	secretTokenString, err := GlobalTokenAnnouncer.GetSecretTokenString(uid)
+	secretTokenString, err := GlobalTokenManager.GetSecretTokenString(uid)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

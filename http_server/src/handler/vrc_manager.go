@@ -2,12 +2,13 @@ package handler
 
 import (
 	"curve/src/dao"
+	"curve/src/utils"
 	"fmt"
 	"github.com/astaxie/beego/logs"
 )
 
 type VrcManager struct {
-	vrcEmailSender   *VrcEmailSender
+	vrcEmailSender   *utils.VrcEmailSender
 	vrcEmailSubject  string
 	vrcStorage       *dao.Cache
 	vrcExpiredSecond int
@@ -15,7 +16,7 @@ type VrcManager struct {
 }
 
 func NewVrcManager(
-	vrcEmailSender *VrcEmailSender,
+	vrcEmailSender *utils.VrcEmailSender,
 	vrcStorage *dao.Cache,
 	vrcExpiredSecond int,
 	vrcEmailSubject string,
