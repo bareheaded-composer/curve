@@ -40,7 +40,9 @@ type Response struct {
 }
 ```
 ### 接口
-待写
+
+#### 文档
+[点我阅读](https://github.com/Lxy417165709/curve/tree/master/doc/api.md)
 
 
 ## 初步实现的功能 (未测试)
