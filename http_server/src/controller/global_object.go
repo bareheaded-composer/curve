@@ -12,3 +12,4 @@ var GlobalUserManager *handler.UserManager
 var GlobalFileStorage *dao.FileStorage
 var GlobalLetterManager *handler.LetterManager
 var GlobalMessageManager *handler.MessageManager
+var GlobalAttentionManager *handler.AttentionManager

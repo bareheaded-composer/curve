@@ -31,6 +31,7 @@ func init() {
 	InitGlobalUserManager()
 	InitGlobalLetterManager()
 	InitGlobalFileStorage()
+	InitGlobalAttentionManager()
 	InitValidatorEngine()
 }
 
@@ -88,6 +89,10 @@ func InitGlobalUserManager() {
 
 func InitGlobalLetterManager() {
 	controller.GlobalLetterManager = handler.NewLetterManager(getDB())
+}
+
+func InitGlobalAttentionManager() {
+	controller.GlobalAttentionManager = handler.NewAttentionManager(getDB())
 }
 
 func InitGlobalFileStorage() {
@@ -175,8 +180,11 @@ func main() {
 		userGroup.POST("/letter", controller.SendLetter)
 		userGroup.POST("/message", controller.SendMessage)
 		userGroup.POST("/receiving_message_client", controller.RegisterClientOfReceivingMessage)
+		userGroup.POST("/attention", controller.Attend)
 		userGroup.GET("/had_sent_letter", controller.HadSentLetter)
 		userGroup.GET("/had_received_letter/:sender_uid", controller.HadReceivedLetter)
+		userGroup.GET("/attender", controller.GetAttentionsOfAttender)
+		userGroup.GET("/attendee", controller.GetAttentionsOfAttendee)
 	}
 	if err := r.Run(fmt.Sprintf(":%d", env.Conf.Http.Port)); err != nil {
 		logs.Error("Running go http server failed. :|")

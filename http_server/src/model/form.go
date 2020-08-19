@@ -42,3 +42,7 @@ type SendMessageForm struct {
 	ReceiverUID int    `json:"receiver_uid" binding:"required"`
 	Content     string `json:"content" binding:"required"`
 }
+
+type AttendForm struct {
+	AttendeeUID int `json:"attendee_uid" binding:"required"`
+}
