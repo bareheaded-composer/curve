@@ -16,14 +16,23 @@ func Photo(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	data, err := GlobalFileStorage.RandomGet(countOfPhoto, model.PhotoDirName)
+	isThumbnail := c.Query("is_thumbnail")
+	datas, err := GlobalFileStorage.RandomGet(countOfPhoto, model.PhotoDirName)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	if isThumbnail == "true" {
+		datas, err = utils.GetThumbnailDatas(datas, model.ThumbnailWidth, model.ThumbnailHeight)
+		if err != nil {
+			logs.Error(err)
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+	}
 	c.JSON(http.StatusOK, gin.H{
-		"data": data,
+		"data": datas,
 	})
 }
 

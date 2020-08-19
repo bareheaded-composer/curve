@@ -6,3 +6,6 @@ const PhotoMaxSize = 5 * Mb
 var ValidPhotoType = []string{
 	"jpg", "png", "bmp",
 }
+
+const ThumbnailWidth = 200
+const ThumbnailHeight = 0

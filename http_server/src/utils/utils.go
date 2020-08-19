@@ -1,10 +1,13 @@
 package utils
 
 import (
+	"bytes"
 	"curve/src/model"
 	"encoding/base64"
 	"fmt"
 	"github.com/astaxie/beego/logs"
+	"github.com/disintegration/imaging"
+	"image/png"
 	"net/http"
 	"strings"
 	"time"
@@ -47,4 +50,33 @@ func GetFileType(fileData []byte) string {
 		return model.InvalidFileType
 	}
 	return arr[1]
+}
+
+func GetThumbnailDatas(imageDatas [][]byte, newWidth, newHeight int) ([][]byte, error) {
+	thumbnailDatas := make([][]byte, 0)
+	for _, imageData := range imageDatas {
+		thumbnailData, err := GetThumbnailData(imageData, newWidth, newHeight)
+		if err != nil {
+			logs.Error(err)
+			return nil, err
+		}
+		thumbnailDatas = append(thumbnailDatas, thumbnailData)
+	}
+	return thumbnailDatas, nil
+}
+
+func GetThumbnailData(imageData []byte, newWidth, newHeight int) ([]byte, error) {
+	image, err := imaging.Decode(bytes.NewBuffer(imageData))
+	if err != nil {
+		logs.Error(err)
+		return nil, err
+	}
+
+	image = imaging.Resize(image, newWidth, newHeight, imaging.Lanczos)
+	buff := new(bytes.Buffer)
+	if err = png.Encode(buff, image); err != nil {
+		logs.Error(err)
+		return nil, err
+	}
+	return buff.Bytes(), nil
 }
