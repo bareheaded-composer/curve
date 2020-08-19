@@ -14,7 +14,7 @@ func SendMessage(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	senderUID, err := getUid(c)
+	senderUID, err := checkAndGetUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -43,7 +43,7 @@ func SendMessage(c *gin.Context) {
 }
 
 func RegisterClientOfReceivingMessage(c *gin.Context) {
-	uid, err := getUid(c)
+	uid, err := checkAndGetUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

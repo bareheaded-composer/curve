@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func getUid(c *gin.Context) (int, error) {
+func checkAndGetUid(c *gin.Context) (int, error) {
 	secretTokenString, err := c.Cookie(model.KeyForTokenInCookies)
 	if err != nil {
 		logs.Error(err)

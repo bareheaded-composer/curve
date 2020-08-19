@@ -7,7 +7,6 @@ import (
 	"curve/src/handler"
 	"curve/src/model"
 	"curve/src/utils"
-	"encoding/base64"
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/gin-gonic/gin"
@@ -16,14 +15,11 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"html/template"
-	"regexp"
 	"time"
 )
 
 const (
-	VrcLength = 6
-	VrcPool   = "0123456789"
-	confPath  = "conf/conf.json"
+	confPath = "conf/conf.json"
 )
 
 func init() {
@@ -163,15 +159,19 @@ func init() {
 func main() {
 	r := gin.Default()
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
-		if err := v.RegisterValidation("password", password); err != nil {
+		if err := v.RegisterValidation("password", utils.IsValidPassword); err != nil {
 			logs.Error(err)
 			return
 		}
-		if err := v.RegisterValidation("vrc", vrc); err != nil {
+		if err := v.RegisterValidation("vrc", utils.IsValidVrc); err != nil {
 			logs.Error(err)
 			return
 		}
-		if err := v.RegisterValidation("avatar", avatar); err != nil {
+		if err := v.RegisterValidation("avatar", utils.IsValidAvatar); err != nil {
+			logs.Error(err)
+			return
+		}
+		if err := v.RegisterValidation("photo", utils.IsValidPhoto); err != nil {
 			logs.Error(err)
 			return
 		}
@@ -181,6 +181,7 @@ func main() {
 	publicGroup := r.Group("/v1/public")
 	{
 		publicGroup.GET("/avatar/:name", controller.Avatar)
+		publicGroup.GET("/photo", controller.Photo)
 	}
 
 	touristGroup := r.Group("/v1/tourist")
@@ -195,6 +196,7 @@ func main() {
 	userGroup := r.Group("/v1/user")
 	{
 		userGroup.PATCH("/avatar", controller.UpdateAvatar)
+		userGroup.POST("/photo", controller.UpLoadPhoto)
 		userGroup.POST("/letter", controller.SendLetter)
 		userGroup.POST("/message", controller.SendMessage)
 		userGroup.POST("/receiving_message_client", controller.RegisterClientOfReceivingMessage)
@@ -206,31 +208,4 @@ func main() {
 		logs.Error("Running go http server failed. :|")
 		return
 	}
-}
-
-func password(f validator.FieldLevel) bool {
-	const passwordRegexp = `^[_.a-zA-Z0-9]{8,15}$`
-	reg := regexp.MustCompile(passwordRegexp)
-	return reg.Match([]byte(f.Field().String()))
-}
-
-func vrc(f validator.FieldLevel) bool {
-	var vrcRegexp = fmt.Sprintf(`^[%s]{%d,%d}$`, VrcPool, VrcLength, VrcLength)
-	reg := regexp.MustCompile(vrcRegexp)
-	return reg.Match([]byte(f.Field().String()))
-}
-
-func avatar(f validator.FieldLevel) bool {
-	base64FileData := f.Field().String()
-	var fileData []byte
-	if _, err := base64.StdEncoding.Decode(fileData, []byte(base64FileData)); err != nil {
-		logs.Warn(err)
-		return false
-	}
-	for _, validType := range model.ValidAvatarType {
-		if utils.GetFileType(fileData) == validType && utils.GetSize(fileData) <= model.AvatarMaxSize {
-			return true
-		}
-	}
-	return false
 }

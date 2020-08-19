@@ -11,7 +11,7 @@ import (
 func Avatar(c *gin.Context) {
 	avatarPhotoName := c.Param("name")
 	logs.Debug(avatarPhotoName)
-	data, err := GlobalFileStorage.Get(avatarPhotoName)
+	data, err := GlobalFileStorage.Get(model.AvatarDir,avatarPhotoName)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -23,13 +23,13 @@ func Avatar(c *gin.Context) {
 }
 
 func UpdateAvatar(c *gin.Context) {
-	var updateAvatarForm *model.UpdateAvatarForm
+	var updateAvatarForm *model.UpdateAvatarForm	//  为什么指针就可以呢？而不是指针就会Panic
 	if err := c.ShouldBindJSON(&updateAvatarForm); err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	uid, err := getUid(c)
+	uid, err := checkAndGetUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -41,7 +41,7 @@ func UpdateAvatar(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := GlobalFileStorage.StoreBase64Data(avatarFileName, updateAvatarForm.AvatarBase64Data); err != nil {
+	if err := GlobalFileStorage.StoreBase64Data(model.AvatarDir,avatarFileName, updateAvatarForm.AvatarBase64Data); err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

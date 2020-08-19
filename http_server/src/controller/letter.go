@@ -9,7 +9,7 @@ import (
 )
 
 func HadSentLetter(c *gin.Context) {
-	uid, err := getUid(c)
+	uid, err := checkAndGetUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -32,7 +32,7 @@ func HadReceivedLetter(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	receiverUID, err := getUid(c)
+	receiverUID, err := checkAndGetUid(c)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
