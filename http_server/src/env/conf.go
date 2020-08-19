@@ -17,6 +17,7 @@ type conf struct {
 	Salt        Salt        `json:"salt"`
 	Template    Template    `json:"template"`
 	SecretKey   SecretKey   `json:"secret_key"`
+	FileStorage FileStorage `json:"file_storage"`
 }
 
 func (c *conf) Load(pathOfConfFile string) error {

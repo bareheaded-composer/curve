@@ -5,19 +5,26 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
+const (
+	RegisterEmailSubject       = "注册邮件"
+	ChangePasswordEmailSubject = "修改密码邮件"
+	RegisterKeyPrefix          = "register"
+	ChangePasswordKeyPrefix    = "changePassword"
+)
+
 type TypeOfEmailContext string
 
 const (
-	HtmlType TypeOfEmailContext = "html"
+	HtmlType  TypeOfEmailContext = "html"
 	PlainType TypeOfEmailContext = "plain"
 )
 
 type EmailContext struct {
 	EmailAddrOfSender    string
 	EmailAddrOfReceivers []string
-	Subject   string
-	Body      string
-	Type      TypeOfEmailContext
+	Subject              string
+	Body                 string
+	Type                 TypeOfEmailContext
 }
 
 func (c *EmailContext) GetSendingContentType() (string, error) {

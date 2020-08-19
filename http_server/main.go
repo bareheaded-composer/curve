@@ -42,6 +42,7 @@ func InitLogger() {
 
 func InitConf() {
 	if err := env.Conf.Load(confPath); err != nil {
+		logs.Error(err)
 		logs.Error("Load conf(%s) failed.", confPath)
 		return
 	}
@@ -56,8 +57,8 @@ func InitGlobalRegisterVrcManager() {
 		getVrcEmailSender(env.Conf.Template.RegisterEmailTemplate),
 		cache,
 		env.Conf.Vrc.ExpiredSecond,
-		"注册邮件",
-		"register",
+		model.RegisterEmailSubject,
+		model.RegisterKeyPrefix,
 	)
 }
 
@@ -70,8 +71,8 @@ func InitGlobalChangePasswordVrcManager() {
 		getVrcEmailSender(env.Conf.Template.ChangePasswordEmailTemplate),
 		cache,
 		env.Conf.Vrc.ExpiredSecond,
-		"修改密码邮件",
-		"changePassword",
+		model.ChangePasswordEmailSubject,
+		model.ChangePasswordKeyPrefix,
 	)
 }
 
@@ -96,8 +97,7 @@ func InitGlobalAttentionManager() {
 }
 
 func InitGlobalFileStorage() {
-	const rootPath = "../assert"
-	controller.GlobalFileStorage = dao.NewFileStorage(rootPath)
+	controller.GlobalFileStorage = dao.NewFileStorage(env.Conf.FileStorage.RootPath)
 }
 
 func InitValidatorEngine() {

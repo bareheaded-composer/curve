@@ -35,5 +35,8 @@
   "template": {
     "register_email_template": "您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.",
     "change_password_email_template": "您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s."
+  },
+  "file_storage": {
+    "root_path": "../assert"
   }
 }

@@ -20,13 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b50a927-36e4-427a-a3fa-7f94196476f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/env/file_storage.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/conf.json" beforeDir="false" afterPath="$PROJECT_DIR$/conf/conf.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/attend.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/attend.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/avatar.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/avatar.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/change_password.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/password.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/letter.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/letter.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/login.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/attention_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/attention_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/letter_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/letter_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handler/user_manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/user_manager.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/table.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/table.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/message_untest.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/photo.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/photo.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/env/conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/env/conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/email_context.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/email.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/protocol.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/protocol.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +79,16 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/utils" />
-      <recent name="C:\Users\hasee\Desktop\curve\src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/conf" />
       <recent name="C:\Users\hasee\Desktop\curve\go\src\handler" />
       <recent name="C:\Users\hasee\Desktop\curve\go\src\dao" />
       <recent name="C:\Users\hasee\Desktop\curve\src\utils" />
       <recent name="C:\Users\hasee\Desktop\curve\conf" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/utils" />
+      <recent name="C:\Users\hasee\Desktop\curve\src" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main.go">
@@ -208,22 +217,22 @@
       <screen x="0" y="23" width="1920" height="977" />
     </state>
     <state x="760" y="448" key="#GOROOT/0.23.1920.977@0.23.1920.977" timestamp="1597625698407" />
-    <state width="1878" height="386" key="GridCell.Tab.0.bottom" timestamp="1597828838510">
+    <state width="1878" height="386" key="GridCell.Tab.0.bottom" timestamp="1597831426367">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="386" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597828838510" />
-    <state width="1878" height="386" key="GridCell.Tab.0.center" timestamp="1597828838509">
+    <state width="1878" height="386" key="GridCell.Tab.0.bottom/0.23.1920.977@0.23.1920.977" timestamp="1597831426367" />
+    <state width="1878" height="386" key="GridCell.Tab.0.center" timestamp="1597831426367">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="386" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597828838509" />
-    <state width="1878" height="386" key="GridCell.Tab.0.left" timestamp="1597828838508">
+    <state width="1878" height="386" key="GridCell.Tab.0.center/0.23.1920.977@0.23.1920.977" timestamp="1597831426367" />
+    <state width="1878" height="386" key="GridCell.Tab.0.left" timestamp="1597831426366">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="386" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597828838508" />
-    <state width="1878" height="386" key="GridCell.Tab.0.right" timestamp="1597828838510">
+    <state width="1878" height="386" key="GridCell.Tab.0.left/0.23.1920.977@0.23.1920.977" timestamp="1597831426366" />
+    <state width="1878" height="386" key="GridCell.Tab.0.right" timestamp="1597831426367">
       <screen x="0" y="23" width="1920" height="977" />
     </state>
-    <state width="1878" height="386" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597828838510" />
+    <state width="1878" height="386" key="GridCell.Tab.0.right/0.23.1920.977@0.23.1920.977" timestamp="1597831426367" />
     <state x="625" y="162" width="670" height="676" key="search.everywhere.popup" timestamp="1597818879418">
       <screen x="0" y="23" width="1920" height="977" />
     </state>

@@ -1,9 +1,13 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"curve/src/model"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 func Test(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"message": "Running go http server success. :)",
+	c.JSON(http.StatusOK, model.Response{
+		Msg:"Running go http server success. :)",
 	})
 }
