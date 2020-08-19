@@ -16,7 +16,7 @@ func Photo(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	data, err := GlobalFileStorage.RandomGet(countOfPhoto, model.PhotoDir)
+	data, err := GlobalFileStorage.RandomGet(countOfPhoto, model.PhotoDirName)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -45,7 +45,7 @@ func UpLoadPhoto(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := GlobalFileStorage.StoreBase64Data(model.PhotoDir, photoNewName, uploadPhotoForm.PhotoBase64Data); err != nil {
+	if err := GlobalFileStorage.StoreBase64Data(model.PhotoDirName, photoNewName, uploadPhotoForm.PhotoBase64Data); err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

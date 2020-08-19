@@ -17,5 +17,23 @@
   "cache": {
     "network": "tcp",
     "host": "localhost:6379"
+  },
+  "vrc": {
+    "char_pool": "0123456789",
+    "length": 6,
+    "expired_second": 60
+  },
+  "salt": {
+    "char_pool": "0123456789",
+    "length": 6
+  },
+  "secret_key": {
+    "for_coder": "1234567891234567",
+    "for_token": "abcdefghi",
+    "for_hasher": "123456789"
+  },
+  "template": {
+    "register_email_template": "您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.",
+    "change_password_email_template": "您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s."
   }
 }

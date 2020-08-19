@@ -1,4 +1,8 @@
 package model
 
-const PhotoDir = "photo_pool"
+const PhotoDirName = "photo_pool"
 const PhotoMaxSize = 5 * Mb
+
+var ValidPhotoType = []string{
+	"jpg", "png", "bmp",
+}

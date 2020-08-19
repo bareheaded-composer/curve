@@ -3,9 +3,9 @@ package utils
 import (
 	"curve/src/model"
 	"encoding/base64"
+	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/go-playground/validator/v10"
-	"golang.org/x/tools/go/ssa/interp/testdata/src/fmt"
 	"regexp"
 )
 
@@ -33,12 +33,7 @@ func IsValidAvatar(f validator.FieldLevel) bool {
 		logs.Warn(err)
 		return false
 	}
-	for _, validType := range model.ValidAvatarType {
-		if GetFileType(fileData) == validType && GetSize(fileData) <= model.AvatarMaxSize {
-			return true
-		}
-	}
-	return false
+	return IsTypeValid(fileData, model.ValidAvatarType) && IsSizeValid(fileData, model.AvatarMaxSize)
 }
 
 func IsValidPhoto(f validator.FieldLevel) bool {
@@ -48,10 +43,6 @@ func IsValidPhoto(f validator.FieldLevel) bool {
 		logs.Warn(err)
 		return false
 	}
-	for _, validType := range model.ValidAvatarType {
-		if GetFileType(fileData) == validType && GetSize(fileData) <= model.PhotoMaxSize {
-			return true
-		}
-	}
-	return false
+	return IsTypeValid(fileData, model.ValidPhotoType) && IsSizeValid(fileData, model.PhotoMaxSize)
 }
+

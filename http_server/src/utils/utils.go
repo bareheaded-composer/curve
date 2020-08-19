@@ -10,6 +10,19 @@ import (
 	"time"
 )
 
+func IsSizeValid(fileData []byte, maxSize int) bool {
+	return GetSize(fileData) <= maxSize
+}
+
+func IsTypeValid(fileData []byte, validType []string) bool {
+	for _, validType := range validType {
+		if GetFileType(fileData) == validType {
+			return true
+		}
+	}
+	return false
+}
+
 func GetNewFileNameBaseOnTimeFromBase64Data(base64Data string) (string, error) {
 	fileData, err := base64.StdEncoding.DecodeString(base64Data)
 	if err != nil {

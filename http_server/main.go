@@ -23,25 +23,31 @@ const (
 )
 
 func init() {
+	InitConf()
+	InitLogger()
+	InitGlobalRegisterVrcManager()
+	InitGlobalChangePasswordVrcManager()
+	InitGlobalTokenManager()
+	InitGlobalUserManager()
+	InitGlobalLetterManager()
+	InitGlobalFileStorage()
+	InitValidatorEngine()
+}
+
+func InitLogger() {
 	logs.SetLogFuncCallDepth(3)
 	logs.EnableFuncCallDepth(true)
 }
-
-func init() {
+func InitConf() {
 	if err := env.Conf.Load(confPath); err != nil {
 		logs.Error("Load conf(%s) failed.", confPath)
 		return
 	}
 }
-
-func init() {
-	const (
-		charPool             = "0123456789"
-		vrcLength            = 6
-		vrcExpiredSecond     = 60
-		emailTemplateContent = `您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.`
+func InitGlobalRegisterVrcManager() {
+	vrcGenerator := utils.NewRandStringGenerator(
+		env.Conf.Vrc.CharPool, env.Conf.Vrc.Length,
 	)
-	vrcGenerator := utils.NewRandStringGenerator(charPool, vrcLength)
 	client := utils.NewEmailClient(
 		env.Conf.EmailClient.EmailAddr,
 		env.Conf.EmailClient.AuthCode,
@@ -49,7 +55,7 @@ func init() {
 		env.Conf.EmailClient.SmtpPort,
 	)
 	emailTemplate := template.New("")
-	if _, err := emailTemplate.Parse(emailTemplateContent); err != nil {
+	if _, err := emailTemplate.Parse(env.Conf.Template.RegisterEmailTemplate); err != nil {
 		logs.Error(err)
 		return
 	}
@@ -61,20 +67,15 @@ func init() {
 	controller.GlobalRegisterVrcManager = handler.NewVrcManager(
 		vrcEmailSender,
 		cache,
-		vrcExpiredSecond,
+		env.Conf.Vrc.ExpiredSecond,
 		"注册邮件",
 		"register",
 	)
 }
-
-func init() {
-	const (
-		charPool             = "0123456789"
-		vrcLength            = 6
-		vrcExpiredSecond     = 60
-		emailTemplateContent = `您的验证码是: {{.Vrc}} 验证码过期时间为: {{.VrcExpiredSecond}}s.`
+func InitGlobalChangePasswordVrcManager() {
+	vrcGenerator := utils.NewRandStringGenerator(
+		env.Conf.Vrc.CharPool, env.Conf.Vrc.Length,
 	)
-	vrcGenerator := utils.NewRandStringGenerator(charPool, vrcLength)
 	client := utils.NewEmailClient(
 		env.Conf.EmailClient.EmailAddr,
 		env.Conf.EmailClient.AuthCode,
@@ -82,7 +83,7 @@ func init() {
 		env.Conf.EmailClient.SmtpPort,
 	)
 	emailTemplate := template.New("")
-	if _, err := emailTemplate.Parse(emailTemplateContent); err != nil {
+	if _, err := emailTemplate.Parse(env.Conf.Template.ChangePasswordEmailTemplate); err != nil {
 		logs.Error(err)
 		return
 	}
@@ -94,26 +95,18 @@ func init() {
 	controller.GlobalChangePasswordVrcManager = handler.NewVrcManager(
 		vrcEmailSender,
 		cache,
-		vrcExpiredSecond,
+		env.Conf.Vrc.ExpiredSecond,
 		"修改密码邮件",
 		"changePassword",
 	)
 }
-
-func init() {
-	const coderSecretKey = "1234567891234567"
-	const tokenSecretKey = "abcdefghi"
-	coder := utils.NewCoder(coderSecretKey)
+func InitGlobalTokenManager() {
+	coder := utils.NewCoder(env.Conf.SecretKey.ForCoder)
 	tokenDuration := 72 * time.Hour
-	controller.GlobalTokenManager = handler.NewTokenManager(coder, tokenDuration, tokenSecretKey, model.KeyForUid)
+	controller.GlobalTokenManager = handler.NewTokenManager(coder, tokenDuration, env.Conf.SecretKey.ForToken, model.KeyForUid)
 }
-
-func init() {
-	const (
-		charPool  = "0123456789"
-		vrcLength = 6
-	)
-	saltGenerator := utils.NewRandStringGenerator(charPool, vrcLength)
+func InitGlobalUserManager() {
+	saltGenerator := utils.NewRandStringGenerator(env.Conf.Salt.CharPool, env.Conf.Salt.Length)
 	db, err := gorm.Open(
 		"mysql",
 		fmt.Sprintf(
@@ -128,12 +121,10 @@ func init() {
 		logs.Error(err)
 		return
 	}
-	const hashKey = "12345678"
-	hasher := utils.NewHasher(hashKey)
+	hasher := utils.NewHasher(env.Conf.SecretKey.ForHasher)
 	controller.GlobalUserManager = handler.NewUserManager(db, saltGenerator, hasher)
 }
-
-func init() {
+func InitGlobalLetterManager() {
 	db, err := gorm.Open(
 		"mysql",
 		fmt.Sprintf(
@@ -150,14 +141,11 @@ func init() {
 	}
 	controller.GlobalLetterManager = handler.NewLetterManager(db)
 }
-
-func init() {
+func InitGlobalFileStorage() {
 	const rootPath = "../assert"
 	controller.GlobalFileStorage = dao.NewFileStorage(rootPath)
 }
-
-func main() {
-	r := gin.Default()
+func InitValidatorEngine() {
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 		if err := v.RegisterValidation("password", utils.IsValidPassword); err != nil {
 			logs.Error(err)
@@ -176,6 +164,11 @@ func main() {
 			return
 		}
 	}
+}
+
+
+func main() {
+	r := gin.Default()
 	r.GET("/test", controller.Test)
 
 	publicGroup := r.Group("/v1/public")

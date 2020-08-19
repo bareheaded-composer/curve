@@ -10,4 +10,5 @@ require (
 	github.com/go-playground/validator/v10 v10.2.0
 	github.com/gorilla/websocket v1.4.2
 	github.com/jinzhu/gorm v1.9.16
+	golang.org/x/tools v0.0.0-20200117065230-39095c1d176c
 )

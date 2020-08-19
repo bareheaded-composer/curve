@@ -11,7 +11,7 @@ import (
 func Avatar(c *gin.Context) {
 	avatarPhotoName := c.Param("name")
 	logs.Debug(avatarPhotoName)
-	data, err := GlobalFileStorage.Get(model.AvatarDir,avatarPhotoName)
+	data, err := GlobalFileStorage.Get(model.AvatarDirName,avatarPhotoName)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -41,7 +41,7 @@ func UpdateAvatar(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := GlobalFileStorage.StoreBase64Data(model.AvatarDir,avatarFileName, updateAvatarForm.AvatarBase64Data); err != nil {
+	if err := GlobalFileStorage.StoreBase64Data(model.AvatarDirName,avatarFileName, updateAvatarForm.AvatarBase64Data); err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

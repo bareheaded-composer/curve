@@ -60,3 +60,4 @@ type Message struct {
 func (*Message) TableName() string {
 	return tableNameOfMessage
 }
+
