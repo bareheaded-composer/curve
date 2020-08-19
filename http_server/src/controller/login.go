@@ -53,11 +53,11 @@ func Login(c *gin.Context) {
 		false,
 		true,
 	)
-	upi, err := GlobalUserManager.GetUpi(uid)
+	userInformation, err := GlobalUserManager.GetUserInformation(uid)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"msg": "登录成功.", "upi": upi})
+	c.JSON(http.StatusOK, gin.H{"msg": "登录成功.", "data": userInformation})
 }

@@ -39,7 +39,7 @@ func (m *AttentionManager) StoreAttentionIfNotExist(attenderUID, attendeeUID int
 
 func (m *AttentionManager) HasAttended(attenderUID, attendeeUID int) (bool, error) {
 	var attention model.Attention
-	if err := m.db.Where("attender_uid = ? and attendee_uid = ?", attenderUID, attendeeUID).First(&attention).Error; err != nil {
+	if err := m.db.First(&attention, "attender_uid = ? and attendee_uid = ?", attenderUID, attendeeUID).Error; err != nil {
 		if gorm.IsRecordNotFoundError(err) {
 			return false, nil
 		}
@@ -51,7 +51,7 @@ func (m *AttentionManager) HasAttended(attenderUID, attendeeUID int) (bool, erro
 
 func (m *AttentionManager) GetAttentionsBaseOnAttendee(attendeeUID int) ([]model.Attention, error) {
 	attentions := make([]model.Attention, 0)
-	if err := m.db.Where("attendee_uid = ?", attendeeUID).Find(&attentions).Error; err != nil {
+	if err := m.db.Find(&attentions, "attendee_uid = ?", attendeeUID).Error; err != nil {
 		logs.Error(err)
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (m *AttentionManager) GetAttentionsBaseOnAttendee(attendeeUID int) ([]model
 
 func (m *AttentionManager) GetAttentionsBaseOnAttender(attenderUID int) ([]model.Attention, error) {
 	attentions := make([]model.Attention, 0)
-	if err := m.db.Where("attender_uid = ?", attenderUID).Find(&attentions).Error; err != nil {
+	if err := m.db.Find(&attentions, "attender_uid = ?", attenderUID).Error; err != nil {
 		logs.Error(err)
 		return nil, err
 	}

@@ -22,28 +22,28 @@ func NewUserManager(db *gorm.DB, saltGenerator *utils.RandStringGenerator, hashe
 	}
 }
 
-func (u *UserManager) GetUpi(uid int) (*model.UPI, error) {
-	upi := &model.UPI{}
-	if err := u.db.Where("id = ?", uid).First(upi).Error; err != nil {
+func (u *UserManager) GetUserInformation(uid int) (*model.UserInformation, error) {
+	var userInformation model.UserInformation
+	if err := u.db.First(&userInformation, "id = ?", uid).Error; err != nil {
 		logs.Error(err)
 		return nil, err
 	}
-	return upi, nil
+	return &userInformation, nil
 }
 
 func (u *UserManager) GetUid(email string) (int, error) {
-	uai := &model.UAI{}
-	if err := u.db.Where("email = ?", email).First(uai).Error; err != nil {
+	var userInformation model.UserInformation
+	if err := u.db.First(userInformation, "email = ?", email).Error; err != nil {
 		logs.Error(err)
 		return model.FlagOfInvalidUID, err
 	}
-	return int(uai.ID), nil
+	return int(userInformation.ID), nil
 }
 
 func (u *UserManager) UpdateLastLoginTime(email string) error {
-	uai := &model.UAI{}
-	uai.LastLoginTime = time.Now()
-	if err := u.db.Where("email = ?", email).Table(uai.TableName()).Update(uai).Error; err != nil {
+	var userInformation model.UserInformation
+	userInformation.LastLoginTime = time.Now()
+	if err := u.db.Where("email = ?", email).Table(userInformation.TableName()).Update(&userInformation).Error; err != nil {
 		logs.Error(err)
 		return err
 	}
@@ -51,9 +51,9 @@ func (u *UserManager) UpdateLastLoginTime(email string) error {
 }
 
 func (u *UserManager) UpdateAvatarFileName(uid int, fileName string) error {
-	upi := &model.UPI{}
-	upi.AvatarPath = fileName
-	if err := u.db.Where("id = ?", uid).Table(upi.TableName()).Update(upi).Error; err != nil {
+	var userInformation model.UserInformation
+	userInformation.AvatarPath = fileName
+	if err := u.db.Where("id = ?", uid).Table(userInformation.TableName()).Update(&userInformation).Error; err != nil {
 		logs.Error(err)
 		return err
 	}
@@ -61,15 +61,15 @@ func (u *UserManager) UpdateAvatarFileName(uid int, fileName string) error {
 }
 
 func (u *UserManager) UpdatePassword(email string, newPassword string) error {
-	uai := &model.UAI{}
+	var userInformation model.UserInformation
 	hashSaltyPassword, salt, err := u.getHashSaltyPassword(newPassword)
 	if err != nil {
 		logs.Error(err)
 		return err
 	}
-	uai.Salt = salt
-	uai.HashSaltyPassword = hashSaltyPassword
-	if err := u.db.Where("email = ?", email).Table(uai.TableName()).Update(uai).Error; err != nil {
+	userInformation.Salt = salt
+	userInformation.HashSaltyPassword = hashSaltyPassword
+	if err := u.db.Where("email = ?", email).Table(userInformation.TableName()).Update(&userInformation).Error; err != nil {
 		logs.Error(err)
 		return err
 	}
@@ -77,28 +77,29 @@ func (u *UserManager) UpdatePassword(email string, newPassword string) error {
 }
 
 func (u *UserManager) IsPasswordRight(email string, password string) (bool, error) {
-	uai := &model.UAI{}
-	err := u.db.Where("email = ?", email).First(uai).Error
-	if err != nil {
+	var userInformation model.UserInformation
+	if err := u.db.First(&userInformation, "email = ?", email).Error; err != nil {
 		if gorm.IsRecordNotFoundError(err) {
 			return false, nil
 		}
 		logs.Error(err)
 		return false, err
 	}
-	saltyPassword := getSaltyPassword(password, uai.Salt)
+	saltyPassword := getSaltyPassword(password, userInformation.Salt)
 	hashSaltyPassword, err := u.hasher.GetHashString(saltyPassword)
 	if err != nil {
 		logs.Error(err)
 		return false, err
 	}
-	return hashSaltyPassword == uai.HashSaltyPassword, nil
+	return hashSaltyPassword == userInformation.HashSaltyPassword, nil
 }
 
 func (u *UserManager) IsEmailExist(email string) (bool, error) {
-	uai := &model.UAI{}
-	err := u.db.Where("email = ?", email).First(uai).Error
-	if err != nil {
+	var userInformation model.UserInformation
+	if !u.db.HasTable(userInformation) {
+		return false, nil
+	}
+	if err := u.db.First(&userInformation, "email = ?", email).Error; err != nil {
 		if gorm.IsRecordNotFoundError(err) {
 			return false, nil
 		}
@@ -114,45 +115,25 @@ func (u *UserManager) InsertUser(email, password string, tp model.UserType) (int
 		logs.Error(err)
 		return model.FlagOfInvalidUID, err
 	}
-	uai := &model.UAI{
+	userInformation := &model.UserInformation{
 		Email:             email,
 		HashSaltyPassword: hashSaltyPassword,
 		Type:              tp,
 		LastLoginTime:     time.Now(),
 		Salt:              salt,
+		AvatarPath:        model.DefaultAvatarPath,
+		Username:          model.DefaultUsername,
+		Sex:               model.DefaultSex,
+		ContactPhone:      model.DefaultContactPhone,
+		ContactEmail:      model.DefaultContactEmail,
+		Birthday:          time.Now(),
 	}
-	upi := &model.UPI{
-		AvatarPath:   model.DefaultAvatarPath,
-		Username:     model.DefaultUsername,
-		Sex:          model.DefaultSex,
-		ContactPhone: model.DefaultContactPhone,
-		ContactEmail: model.DefaultContactEmail,
-		Birthday:     time.Now(),
-	}
-	if !u.db.HasTable(uai) {
-		logs.Info("As table(%s) not exist, it will be created.", uai.TableName())
-		u.db.CreateTable(uai)
-		logs.Info("Creating table(%s) success.", uai.TableName())
-	}
-	if !u.db.HasTable(upi) {
-		logs.Info("As table(%s) not exist, it will be created.", upi.TableName())
-		u.db.CreateTable(upi)
-		logs.Info("Creating table(%s) success.", upi.TableName())
-	}
-	if err := u.db.Save(uai).Error; err != nil {
-		logs.Info("Inserting User(%s)'s UAI fail.", email)
+	createTableIfNotExist(u.db, userInformation, userInformation.TableName())
+	if err := u.db.Save(userInformation).Error; err != nil {
 		logs.Error(err)
 		return model.FlagOfInvalidUID, err
 	}
-	upi.ID = uai.ID
-	logs.Info("Inserting User(%s)'s UAI success.", email)
-	if err := u.db.Save(upi).Error; err != nil {
-		logs.Info("Inserting User(%s)'s UPI fail.", email)
-		logs.Error(err)
-		return model.FlagOfInvalidUID, err
-	}
-	logs.Info("Inserting User(%s)'s UPI success.", email)
-	return int(uai.ID), nil
+	return int(userInformation.ID), nil
 }
 
 func (u *UserManager) getHashSaltyPassword(password string) (string, string, error) {
