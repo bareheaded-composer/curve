@@ -11,6 +11,8 @@
 	- `imaging`
 - [ ] `mysql`
 - [ ] `redis`
+- [ ] `grafana`
+- [ ] `nginx`
 
 ## 风格
 - [ ] 交互: `restful`(正在学习)
