@@ -2,6 +2,10 @@
 ## 简介
 构建中。
 
+
+## 开发指南
+- [ ] [进入grafana主页](https://github.com/Lxy417165709/curve/tree/master/grafana/readme.md)
+
 ## 技术栈
 - [ ] `go`
 	- `gin`
