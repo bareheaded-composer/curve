@@ -57,6 +57,10 @@ type Response struct {
 - [ ] 消息发送
 - [ ] 实时对话
 
+## 经验收获
+- [ ] `go`
+	- 出现错误时，不仅仅要进行处理，更要输出错误，这样在出现 `bug` 时，就能很快找出原因。
+	- 输出日志时，一定要记录输出代码的位置。
 
 ## 资料
 - [ ] `go`
@@ -64,3 +68,5 @@ type Response struct {
 	- [gorm文档](http://gorm.book.jasperxu.com/)
 - [ ] `redis`
 	- [在Mac上安装redis](https://www.cnblogs.com/DI-DIAO/p/12588078.html)
+- [ ] 规范
+	- [接口文档编写示例](https://www.jianshu.com/p/a5ceb0611125)
