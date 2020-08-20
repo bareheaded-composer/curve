@@ -6,7 +6,7 @@
 ## 1. 登录接口
 
 ### 请求头
-- [ ] 请求 URL: `http://xxxx:8080/v1/tourist/login`
+- [ ] 请求 URL: `http://120.26.162.39:8080/v1/tourist/login`
 - [ ] 请求方式: `POST`
 - [ ] 表头: `Content-Type: application/json`
 

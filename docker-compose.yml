@@ -5,14 +5,12 @@ networks:
 services:
   http_server:
     build: ./http_server
-    container_name: golang
+    container_name: http_server
     restart: always
     networks:
       - my-net  
     ports:
       - "8080:8080"
-    volumes:
-      - ./conf/go:/root/conf
     depends_on:
       - mysql
 
