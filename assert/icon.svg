@@ -7,58 +7,58 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:export-ydpi="512"
-   inkscape:export-xdpi="512"
-   inkscape:export-filename="C:\Users\lightyears\Source\curve\assert\icon.png"
-   sodipodi:docname="icon.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   id="svg16"
-   version="1.1"
-   viewBox="0 0 12.7 12.7"
+   width="48"
    height="48"
-   width="48">
+   viewBox="0 0 12.7 12.7"
+   version="1.1"
+   id="svg16"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="C:\Users\lightyears\Source\curve\assert\icon.png"
+   inkscape:export-xdpi="512"
+   inkscape:export-ydpi="512">
   <defs
      id="defs10" />
   <sodipodi:namedview
-     inkscape:guide-bbox="true"
-     showguides="true"
-     inkscape:window-maximized="1"
-     inkscape:window-y="-9"
-     inkscape:window-x="-9"
-     inkscape:window-height="1001"
-     inkscape:window-width="1920"
-     units="px"
-     showgrid="false"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="26.093701"
-     inkscape:cx="7.1871644"
-     inkscape:zoom="11.2"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base">
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="7.1871644"
+     inkscape:cy="26.093701"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
     <sodipodi:guide
-       id="guide39"
+       position="0.35435265,2.27022"
        orientation="0,-1"
-       position="0.35435265,2.27022" />
+       id="guide39" />
     <sodipodi:guide
-       inkscape:color="rgb(0,0,255)"
-       inkscape:locked="false"
-       inkscape:label=""
+       position="0.52916667,-1.9465774"
+       orientation="-1,0"
        id="guide45"
-       orientation="-1,0"
-       position="0.52916667,-1.9465774" />
-    <sodipodi:guide
-       inkscape:color="rgb(0,0,255)"
-       inkscape:locked="false"
        inkscape:label=""
-       id="guide47"
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="12.170833,-0.76540182"
        orientation="-1,0"
-       position="12.170833,-0.76540182" />
+       id="guide47"
+       inkscape:label=""
+       inkscape:locked="false"
+       inkscape:color="rgb(0,0,255)" />
   </sodipodi:namedview>
   <metadata
      id="metadata13">
@@ -68,39 +68,39 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     id="layer1"
+     inkscape:label="图层 1"
      inkscape:groupmode="layer"
-     inkscape:label="图层 1">
+     id="layer1">
     <text
-       transform="scale(1.007854,0.99220719)"
-       id="text20"
-       y="9.3999147"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.63241px;line-height:1.25;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#0088aa;fill-opacity:1;stroke:none;stroke-width:0.218907;"
        x="0.99923211"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.63241px;line-height:1.25;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#376780;fill-opacity:1;stroke:none;stroke-width:0.218907;"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.63241px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.218907;fill:#376780;fill-opacity:1;"
-         y="9.3999147"
-         x="0.99923211"
+       y="9.3999147"
+       id="text20"
+       transform="scale(1.007854,0.99220719)"><tspan
+         sodipodi:role="line"
          id="tspan18"
-         sodipodi:role="line">Cu</tspan></text>
+         x="0.99923211"
+         y="9.3999147"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.63241px;font-family:Georgia;-inkscape-font-specification:'Georgia, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#0088aa;fill-opacity:1;stroke-width:0.218907;">Cv</tspan></text>
     <rect
-       id="rect22-7"
-       width="11.641666"
-       height="0.49609375"
-       x="0.5291667"
+       style="stroke-width:0.280646;fill:#0088aa;fill-opacity:1"
        y="10.42978"
-       style="stroke-width:0.280646;fill:#3767aa;fill-opacity:1" />
-    <rect
-       style="stroke-width:0.280646;fill:#3767aa;fill-opacity:1"
-       y="1.7835752"
        x="0.5291667"
        height="0.49609375"
        width="11.641666"
-       id="rect22-7-2" />
+       id="rect22-7" />
+    <rect
+       id="rect22-7-2"
+       width="11.641666"
+       height="0.49609375"
+       x="0.5291667"
+       y="1.7835752"
+       style="stroke-width:0.280646;fill:#0088aa;fill-opacity:1" />
   </g>
 </svg>
