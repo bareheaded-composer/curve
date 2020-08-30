@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.scss';
 
 export default function Home(): JSX.Element {
   return (
+    /** 参考页面 https://hub.docker.com/ */
     <div className={styles.container}>
       <Head>
         <title>Curve</title>
